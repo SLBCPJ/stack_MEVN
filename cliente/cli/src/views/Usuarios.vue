@@ -107,7 +107,7 @@ export default {
         agregarUsuario(){
 
 
-            this.axios.post('/new-user',this.user)
+            this.axios.post('/register',this.user)
             .then(res=>{
 
                 this.users.push(res.data)

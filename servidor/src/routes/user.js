@@ -1,22 +1,50 @@
 import express from 'express';
 const router = express.Router();
+import authService from '../services/auth.service'
 
 import User from '../models/user';
+import Auth from '../middleware/authentication'
 
+//*******Auth Routes
+router.post('/login', async (req,res)=>{
+  try {
+      const {email, password} = req.body
+      if (!email || !password) {
+          res.status(400).json('User and password required')
+      }
+      let token = await authService.login(req.body)
+      // res.send(user)
+      if (token) {
+          res.status(token.code).json(token)
+      }else{
+          res.status(401).json({msg:'Incorrect data'})
+      }
+  } catch (error) {
+      res.send(error)
+  }
+})
 // Agregar un nuevo cliente
-router.post('/new-user', async(req, res) => {
-    const body = req.body;  
-    try {
-      const userDB = await User.create(body);
-      res.status(200).json(userDB); 
-    } catch (error) {
-      return res.status(500).json({
-        mensaje: 'Ocurrio un error',
-        error
-      })
-    }
-  });
-
+// router.post('/new-user', async(req, res) => {
+//     const body = req.body;  
+//     try {
+//       const userDB = await User.create(body);
+//       res.status(200).json(userDB); 
+//     } catch (error) {
+//       return res.status(500).json({
+//         mensaje: 'Ocurrio un error',
+//         error
+//       })
+//     }
+//   });
+router.post('/register', async (req,res)=>{
+  try {
+      const user = new User(req.body)
+      const userSaved = await authService.register(user)
+      res.send(userSaved)
+  } catch (error) {
+      res.send(error)
+  }
+})
   // Get con parámetros
   router.get('/user/:id', async(req, res) => {
     const _id = req.params.id;
@@ -73,14 +101,23 @@ router.put('/update-user/:id', async(req, res) => {
         _id,
         body,
         {new: true});
-      res.json(userDb);  
+        res.json(userDb);  
     } catch (error) {
       return res.status(400).json({
         mensaje: 'Ocurrio un error',
         error
       })
     }
-  });    
+  }); 
+// router.put('/update', async (req,res)=>{
+//   try {
+//       const user = new User(req.body)
+//       const userUpdated = await authService.udptate(user)
+//       res.send(userUpdated)
+//   } catch (error) {
+//       res.send(error)
+//   }
+// })   
 
 
 // Exportamos la configuración de express app
