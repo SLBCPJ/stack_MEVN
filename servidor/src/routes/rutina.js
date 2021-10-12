@@ -2,6 +2,8 @@ import express from 'express';
 const router = express.Router();
 
 import Rutina from '../models/rutina';
+import Auth from '../middleware/authentication'
+
 
 // Agregar una nota
 router.post('/new-rutina', async(req, res) => {
@@ -45,7 +47,7 @@ router.get('/rutina/:id', async(req, res) => {
   });
 
 // Delete eliminar una nota
-router.delete('/rutina/:id', async(req, res) => {
+router.delete('/rutina/:id',Auth, async(req, res) => {
     const _id = req.params.id;
     try {
       const rutinaDb = await Rutina.findByIdAndDelete({_id});
@@ -65,7 +67,7 @@ router.delete('/rutina/:id', async(req, res) => {
   });
 
 // Put actualizar una rutina
-router.put('/rutina/:id', async(req, res) => {
+router.put('/rutina/:id',Auth, async(req, res) => {
     const _id = req.params.id;
     const body = req.body;
     try {

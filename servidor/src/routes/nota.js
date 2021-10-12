@@ -2,9 +2,11 @@ import express from 'express';
 const router = express.Router();
 
 import Nota from '../models/nota';
+import Auth from '../middleware/authentication'
+
 
 // Agregar una nota
-router.post('/nueva-nota', async(req, res) => {
+router.post('/nueva-nota',Auth, async(req, res) => {
     const body = req.body;  
     try {
       const notaDB = await Nota.create(body);

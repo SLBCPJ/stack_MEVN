@@ -5,7 +5,10 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/notas">Notas</router-link> |
       <router-link to="/users">Usuarios</router-link> |
-      <router-link to="/dietas">Dietas</router-link> 
+      <router-link to="/dietas">Dietas</router-link> |
+      <router-link to="/register">Registro</router-link> |
+      <router-link to="/login">Login</router-link>
+
     </div>
     <router-view/>
   </div>

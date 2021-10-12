@@ -1,64 +1,56 @@
 <template>
-<div class="container">
-    <h1>Usuarios</h1>
+    <div class="container">
+        <h1>Usuarios</h1>
 
-    <b-alert 
-    :show="dismissCountDown" 
-    dismissible 
-    :variant="mensaje.color" 
-    @dismissed="dismissCountDown=0" 
-    @dismiss-count-down="countDownChanged" > 
-    {{mensaje.texto}} 
-    </b-alert>
+        <b-alert 
+        :show="dismissCountDown" 
+        dismissible 
+        :variant="mensaje.color" 
+        @dismissed="dismissCountDown=0" 
+        @dismiss-count-down="countDownChanged" > 
+        {{mensaje.texto}} 
+        </b-alert>
 
 
-    <form @submit.prevent="editarUsuario(userEditar)" v-if="editar">
-        <h3>Editar Usuario</h3>
+        <form @submit.prevent="editarUsuario(userEditar)" v-if="editar">
+            <h3>Editar Usuario</h3>
 
-        <input type="text" class="form-control my-2" placeholder="Nombre" v-model="userEditar.name">
-        <input type="email" class="form-control my-2" placeholder="Email" v-model="userEditar.email">
-        <input type="password" class="form-control my-2" placeholder="Contraseña" v-model="userEditar.password">
-        <b-button class="btn-success my-2 mx-2" type="submit">Editar</b-button>
-        <b-button class=" my-2" type="submit" @click="editar=false">Cancelar</b-button>
+            <input type="text" class="form-control my-2" placeholder="Nombre" v-model="userEditar.name">
+            <input type="email" class="form-control my-2" placeholder="Email" v-model="userEditar.email">
+            <!-- <input type="password" class="form-control my-2" placeholder="Contraseña" v-model="userEditar.password"> -->
+            <b-button class="btn-success my-2 mx-2" type="submit">Editar</b-button>
+            <b-button class=" my-2" type="submit" @click="editar=false">Cancelar</b-button>
 
-    </form>
-    <form @submit.prevent="agregarUsuario()" v-if="!editar">
-        <h3>Agregar un nuevo usuario</h3>
+        </form>
+       
 
-        <input type="text" class="form-control my-2" placeholder="Nombre" v-model="user.name" required>
-        <input type="email" class="form-control my-2" placeholder="Email" v-model="user.email" required>
-        <input type="password" class="form-control my-2" placeholder="Contraseña" v-model="user.password">
-        <b-button class="btn-success my-2" type="submit">Crear Usuario</b-button>
+    <!-- consultas -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Contraseña</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in users" :key="index">
+                    <th scope="row">{{item._id}}</th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.password}}</td>
+                    <td>
+                        <b-button class="btn-danger mx-2" @click="eliminarUsuario(item._id)">Eliminar</b-button>
+                        <b-button class="btn-warning mx-2" @click="activarEdicion(item._id)">Editar</b-button>
+                    </td>
+                </tr>
 
-    </form>
+            </tbody>
+        </table>
 
-<!-- consultas -->
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Contraseña</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(item, index) in users" :key="index">
-                <th scope="row">{{item._id}}</th>
-                <td>{{item.name}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.password}}</td>
-                <td>
-                    <b-button class="btn-danger mx-2" @click="eliminarUsuario(item._id)">Eliminar</b-button>
-                    <b-button class="btn-warning mx-2" @click="activarEdicion(item._id)">Editar</b-button>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-
-</div>
+    </div>
 </template>
 
 <script>
@@ -104,30 +96,7 @@ export default {
 
         },
 
-        agregarUsuario(){
-
-
-            this.axios.post('/register',this.user)
-            .then(res=>{
-
-                this.users.push(res.data)
-                this.user.name="";
-                this.user.email="";
-                this.user.password="";
-                this.mensaje.color="success";
-                this.mensaje.texto="Usuario Agregado";
-                this.showAlert();
-
-
-            })
-            .catch(e=>{
-
-                console.log(e.response);
-
-            })
-
-
-        },
+ 
 
         eliminarUsuario(id){
 
@@ -175,7 +144,7 @@ export default {
                 const index= this.users.findIndex(n=> n._id===res.data._id);
                 this.users[index].name=res.data.name;
                 this.users[index].email=res.data.email;
-                this.users[index].password=res.data.password;
+                // this.users[index].password=res.data.password;
                 this.mensaje.color="success";
                 this.mensaje.texto="Usuario Editado";
                 this.showAlert();

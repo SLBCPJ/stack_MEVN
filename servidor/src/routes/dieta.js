@@ -2,6 +2,8 @@ import express from 'express';
 const router = express.Router();
 
 import Dieta from '../models/dieta';
+import Auth from '../middleware/authentication'
+
 
 // Agregar una dieta
 router.post('/new-dieta', async(req, res) => {
@@ -45,7 +47,7 @@ router.get('/dieta/:id', async(req, res) => {
   });
 
 // Delete eliminar una dieta
-router.delete('/dieta/:id', async(req, res) => {
+router.delete('/dieta/:id', Auth, async(req, res) => {
     const _id = req.params.id;
     try {
       const dietaDb = await Dieta.findByIdAndDelete({_id});
@@ -65,7 +67,7 @@ router.delete('/dieta/:id', async(req, res) => {
   });
 
 // Put actualizar una dieta
-router.put('/dieta/:id', async(req, res) => {
+router.put('/dieta/:id', Auth, async(req, res) => {
     const _id = req.params.id;
     const body = req.body;
     try {

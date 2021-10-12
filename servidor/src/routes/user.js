@@ -73,7 +73,7 @@ router.post('/register', async (req,res)=>{
   });
 
 // eliminar un usuario
-router.delete('/user/:id', async(req, res) => {
+router.delete('/user/:id', Auth, async(req, res) => {
     const _id = req.params.id;
     try {
       const userDb = await User.findByIdAndDelete({_id});
@@ -93,7 +93,7 @@ router.delete('/user/:id', async(req, res) => {
   });
 
 //actualizar un usuario
-router.put('/update-user/:id', async(req, res) => {
+router.put('/update-user/:id', Auth, async(req, res) => {
     const _id = req.params.id;
     const body = req.body;
     try {
@@ -109,15 +109,16 @@ router.put('/update-user/:id', async(req, res) => {
       })
     }
   }); 
-// router.put('/update', async (req,res)=>{
-//   try {
-//       const user = new User(req.body)
-//       const userUpdated = await authService.udptate(user)
-//       res.send(userUpdated)
-//   } catch (error) {
-//       res.send(error)
-//   }
-// })   
+
+//   router.post('/edit',async (req,res)=>{
+//     const user = new User(req.body)
+//     const userSaved = await authService.register(user)
+//     let product = await Product.findById(req.body.product)
+//     product.value = req.body.value
+//     await product.save()
+//     res.status(200).json({product:product})
+// })  
+ 
 
 
 // Exportamos la configuración de express app

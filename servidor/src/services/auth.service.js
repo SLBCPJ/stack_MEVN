@@ -49,22 +49,6 @@ const authService = {
             return error
         }
     }
-    // update: async function(User){
-    //     const _id = req.params.id;
-    //     const body = req.body;
-    //     try {
-    //         let  pass = await bcrypt.hash(User.password, 10).then(res=>res)
-    //         User.password = pass
-    //         const userDb = await User.findByIdAndUpdate(
-    //             _id,
-    //             body,
-    //             pass,
-    //             {new: true});
-    //             res.json(userDb);
-    //     } catch (error) {
-    //         return error
-    //     }
-    // }
 }
 
 module.exports = authService;
