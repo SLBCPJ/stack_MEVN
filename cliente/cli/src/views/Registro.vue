@@ -75,7 +75,7 @@
                       </div>
                       <div class="mt-4 mb-0">
                         <div class="d-grid">
-                          <button class="btn-success my-2" type="submit">
+                          <button class="btn btn-primary" tabindex="5" type="submit">
                             Registrar
                           </button>
                         </div>
@@ -119,7 +119,11 @@ export default {
       dismissSecs: 5,
       dismissCountDown: 0,
 
-      user: { name: "", email: "", password: "" },
+      user: { 
+        name: "", 
+        email: "", 
+        password: "" 
+      },
       editar: false,
       userEditar: {},
     };

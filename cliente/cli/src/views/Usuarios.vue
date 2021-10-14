@@ -96,8 +96,6 @@ export default {
 
         },
 
- 
-
         eliminarUsuario(id){
 
             this.axios.delete(`/user/${id}`)

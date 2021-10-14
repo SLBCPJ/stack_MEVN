@@ -1,4 +1,6 @@
 <template>
+<div>
+  <div class="LoginForm">
   <div class="container">
     <div class="login-form">
       <div class="main-div">
@@ -34,11 +36,13 @@
             value="Ingresar"
           />
 
-            <a href="/users" class="btn btn-primary mt-3">Registrarse</a>
+            <a href="/register" class="btn btn-primary mt-3">Registrarse</a>
 
         </form>
       </div>
     </div>
+  </div>
+  </div>
   </div>
 </template>
 <script>
@@ -68,7 +72,7 @@ export default {
         .then((response) => {
           // console.log(response.data);
           localStorage.setItem("token", response.data.token);
-          this.$router.push("/");
+          this.$router.push("/dashboard");
         });
       // if (this.user) {
       //     localStorage.setItem('user',this.user);
@@ -80,7 +84,7 @@ export default {
 </script>
 
 <style scoped>
-body#LoginForm {
+.LoginForm {
   background-image: url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
   background-repeat: no-repeat;
   background-position: center;
