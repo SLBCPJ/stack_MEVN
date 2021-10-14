@@ -26,7 +26,10 @@ const routes = [
   {
     path: '/notas',
     name: 'Notas',
-    component: () => import(/* webpackChunkName: "notas" */ '../views/Notas.vue')
+    component: () => import(/* webpackChunkName: "notas" */ '../views/Notas.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/users',
@@ -39,7 +42,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Dietas.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Dietas.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/register',
@@ -52,8 +58,10 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
- 
-    component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue')
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/login',
@@ -83,7 +91,7 @@ router.beforeEach((to,from,next)=>{
       //enviamos a autenticar
       if (!localStorage.getItem('token')) {
           next({
-              name: 'login'
+              name: 'Login'
           })
       }else{
           next()

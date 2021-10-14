@@ -422,11 +422,10 @@
       <section id="services" class="services">
         <div class="container" data-aos="fade-up">
           <div class="section-title">
-            <h2>Services</h2>
-            <h3>Check our <span>Services</span></h3>
+            <h2>Servicios</h2>
+            <h3>Nuestros <span>Servicios</span></h3>
             <p>
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci expedita at voluptas atque vitae autem.
+              En Galaxy Fitness encontraras una variedad de servicios. Así que animate a pertenecer a nosotros
             </p>
           </div>
 
@@ -438,7 +437,7 @@
             >
               <div class="icon-box">
                 <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                <h4><a href="">Lorem Ipsum</a></h4>
+                <h4>Aeróbicos.</h4>
                 <p>
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi
@@ -453,7 +452,7 @@
             >
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-file"></i></div>
-                <h4><a href="">Sed ut perspiciatis</a></h4>
+                <h4>Spinning.</h4>
                 <p>
                   Duis aute irure dolor in reprehenderit in voluptate velit esse
                   cillum dolore
@@ -468,7 +467,7 @@
             >
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-tachometer"></i></div>
-                <h4><a href="">Magni Dolores</a></h4>
+                <h4>Maquinas para tonificación y fortalecimiento muscular.</h4>
                 <p>
                   Excepteur sint occaecat cupidatat non proident, sunt in culpa
                   qui officia
@@ -483,7 +482,7 @@
             >
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-world"></i></div>
-                <h4><a href="">Nemo Enim</a></h4>
+                <h4>Rutina de pesas dirigidas</h4>
                 <p>
                   At vero eos et accusamus et iusto odio dignissimos ducimus qui
                   blanditiis
@@ -498,7 +497,7 @@
             >
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-slideshow"></i></div>
-                <h4><a href="">Dele cardo</a></h4>
+                <h4>Masoterapia</h4>
                 <p>
                   Quis consequatur saepe eligendi voluptatem consequatur dolor
                   consequuntur
@@ -513,7 +512,7 @@
             >
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-arch"></i></div>
-                <h4><a href="">Divera don</a></h4>
+                <h4>Personal training</h4>
                 <p>
                   Modi nostrum vel laborum. Porro fugit error sit minus sapiente
                   sit aspernatur
@@ -1385,6 +1384,6 @@
 
 <style scoped>
 #hero {
-  background: url("../assets/img/hero-bg.jpg") top left;
+  background: url("../assets/img/gym7.jpg") top left;
 }
 </style>
