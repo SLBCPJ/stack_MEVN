@@ -89,7 +89,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  padding: 10px;
+  padding: 80px;
 }
 
 .form-heading {
