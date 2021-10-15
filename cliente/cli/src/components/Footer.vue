@@ -4,9 +4,12 @@
       <div class="container-fluid px-4">
         <div class="d-flex align-items-center justify-content-between small">
           <div class="text-muted">Todos los derechos &copy; Sitio web 2021</div>
-        
         </div>
       </div>
     </footer>
   </div>
 </template>
+
+<script>
+export default {};
+</script>

@@ -1,27 +1,27 @@
 <template>
+  <div class="">
+    <Header />
+    <Aside />
+    <h1>Bienvenid@ a nuestro sistema</h1>
+    <Menu></Menu>
 
-       <div class="container">
-
-        <div id="nav">
-          <router-link to="/">Home</router-link> |
-          <router-link to="/about">About</router-link> |
-          <router-link to="/notas">Notas</router-link> |
-          <router-link to="/users">Usuarios</router-link> |
-          <router-link to="/dietas">Dietas</router-link> |
-          <router-link to="/register">Registro</router-link> |
-          <router-link to="/">        <b-button @click="cerrarSesion()" variant="danger">Cerrar Sesion</b-button>
-</router-link>
-        </div>
-
-        <h1>Bienvenid@ a nuestro sistema</h1>
-        <!-- <b-button @click="cerrarSesion()" variant="danger">Cerrar Sesion</b-button> -->
-
-    </div>
+    <Footer />
+  </div>
 </template>
 
 <script>
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer";
+import Aside from "@/components/Aside";
+import Menu from "@/components/Menu";
 export default {
   name: "Dashboard",
+  components: {
+    Header,
+    Aside,
+    Menu,
+    Footer,
+  },
   methods: {
     cerrarSesion() {
       window.localStorage.removeItem("token");
@@ -29,10 +29,7 @@ export default {
     },
   },
 };
-
-
 </script>
 
 <style scoped>
-  
 </style>

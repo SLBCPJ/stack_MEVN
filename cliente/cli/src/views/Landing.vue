@@ -22,8 +22,7 @@
             </li>
             <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
             
-            <li><a class="nav-link scrollto" href="/login">Iniciar Sesión</a></li>
-
+            <li><a class="nav-link scrollto" v-b-popover.hover.top="''" title="Iniciar Sesión" href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>

@@ -24,7 +24,7 @@
                   <div class="card-body">
                     <form @submit.prevent="agregarUsuario()">
                       <div class="row mb-3">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
                             <input
                               required
@@ -36,12 +36,18 @@
                             <label for="inputFirstName">Nombre</label>
                           </div>
                         </div>
-                        <!-- <div class="col-md-6">
-                                                    <div class="form-floating">
-                                                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                                                        <label for="inputLastName">Last name</label>
-                                                    </div>
-                                                </div> -->
+                        <div class="col-md-6">
+                          <div class="form-floating">
+                          
+                            <select class="form-select" name="" id="" v-model="user.tipoId">
+                              <option >Tipo de Identificacion</option>
+                              <option  value="">CC</option>
+                              <option value="">TI</option>
+                              <option value="">CE</option>
+                            </select>
+                           
+                          </div>
+                        </div>
                       </div>
                       <div class="form-floating mb-3">
                         <input
@@ -75,7 +81,12 @@
                       </div>
                       <div class="mt-4 mb-0">
                         <div class="d-grid">
-                          <button class="btn btn-primary" tabindex="5" type="submit">
+                          <button
+                            class="btn btn-primary"
+                            tabindex="5"
+                            type="submit"
+                          ><i class="fas fa-user"></i>
+
                             Registrar
                           </button>
                         </div>
@@ -119,10 +130,10 @@ export default {
       dismissSecs: 5,
       dismissCountDown: 0,
 
-      user: { 
-        name: "", 
-        email: "", 
-        password: "" 
+      user: {
+        name: "",
+        email: "",
+        password: ""
       },
       editar: false,
       userEditar: {},
@@ -144,9 +155,11 @@ export default {
           this.user.name = "";
           this.user.email = "";
           this.user.password = "";
+
           this.mensaje.color = "success";
           this.mensaje.texto = "Usuario Agregado";
           this.showAlert();
+          this.$router.push("/users");
         })
         .catch((e) => {
           console.log(e.response);

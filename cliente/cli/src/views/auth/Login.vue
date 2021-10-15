@@ -72,7 +72,7 @@ export default {
         .then((response) => {
           // console.log(response.data);
           localStorage.setItem("token", response.data.token);
-          this.$router.push("/dashboard");
+          this.$router.push("/home");
         });
       // if (this.user) {
       //     localStorage.setItem('user',this.user);

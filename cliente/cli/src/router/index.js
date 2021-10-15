@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+// import Home from '../views/Home.vue'
 import Error from '@/views/Error404';
 import Login from '@/views/auth/Login';
 import Landing from '@/views/Landing';
@@ -13,11 +13,11 @@ const routes = [
     name: 'landing',
     component: Landing
   },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  },
+  // {
+  //   path: '/home',
+  //   name: 'Home',
+  //   component: Home
+  // },
   {
     path: '/about',
     name: 'About',
@@ -34,15 +34,15 @@ const routes = [
   {
     path: '/users',
     name: 'Usuarios',
-    component: () => import(/* webpackChunkName: "users" */ '../views/Usuarios.vue')
+    component: () => import(/* webpackChunkName: "users" */ '../views/Usuarios.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/dietas',
     name: 'Dietas',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Dietas.vue'),
+    component: () => import(/* webpackChunkName: "dietas" */ '../views/Dietas.vue'),
     meta: {
       requiresAuth: true
     }
@@ -50,13 +50,11 @@ const routes = [
   {
     path: '/register',
     name: 'Registro',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Registro.vue')
+
+    component: () => import(/* webpackChunkName: "register" */ '../views/Registro.vue')
   },
   {
-    path: '/dashboard',
+    path: '/home',
     name: 'Dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue'),
     meta: {

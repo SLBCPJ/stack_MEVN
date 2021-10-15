@@ -6,7 +6,7 @@ import Auth from '../middleware/authentication'
 
 
 // Agregar una nota
-router.post('/nueva-nota',Auth, async(req, res) => {
+router.post('/nueva-nota', async(req, res) => {
     const body = req.body;  
     try {
       const notaDB = await Nota.create(body);
@@ -47,7 +47,7 @@ router.get('/nota', async (req, res) => {
 });
 
 // Delete eliminar una nota
-router.delete('/nota/:id', async(req, res) => {
+router.delete('/nota/:id', Auth, async(req, res) => {
     const _id = req.params.id;
     try {
       const notaDb = await Nota.findByIdAndDelete({_id});
