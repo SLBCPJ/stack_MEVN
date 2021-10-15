@@ -47,7 +47,7 @@ router.get('/nota', async (req, res) => {
 });
 
 // Delete eliminar una nota
-router.delete('/nota/:id', Auth, async(req, res) => {
+router.delete('/nota/:id', async(req, res) => {
     const _id = req.params.id;
     try {
       const notaDb = await Nota.findByIdAndDelete({_id});

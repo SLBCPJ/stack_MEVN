@@ -6,7 +6,7 @@ import User from '../models/user';
 import Auth from '../middleware/authentication'
 
 //*******Auth Routes
-router.post('/login', async (req,res)=>{
+router.post('/login', async (req,res)=>{ 
   try {
       const {email, password} = req.body
       if (!email || !password) {
