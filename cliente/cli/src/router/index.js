@@ -53,6 +53,7 @@ const routes = [
 
     component: () => import(/* webpackChunkName: "register" */ '../views/Registro.vue')
   },
+
   {
     path: '/home',
     name: 'Dashboard',

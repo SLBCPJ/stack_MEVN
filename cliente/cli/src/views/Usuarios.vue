@@ -29,6 +29,36 @@
           placeholder="Email"
           v-model="userEditar.email"
         />
+         <input
+          type="text"
+          class="form-control my-2"
+          placeholder="Tipo ID"
+          v-model="userEditar.tipoId"
+        />
+        <input
+          type="number"
+          class="form-control my-2"
+          placeholder="Numero Identificación"
+          v-model="userEditar.numberIden"
+        />
+         <input
+          type="text"
+          class="form-control my-2"
+          placeholder="Dirección"
+          v-model="userEditar.address"
+        />
+         <input
+          type="number"
+          class="form-control my-2"
+          placeholder="Telefono"
+          v-model="userEditar.phone"
+        />
+         <input
+          type="text"
+          class="form-control my-2"
+          placeholder="Rol"
+          v-model="userEditar.rol"
+        />
         <!-- <input type="password" class="form-control my-2" placeholder="Contraseña" v-model="userEditar.password"> -->
         <b-button class="btn-success my-2 mx-2" type="submit">Editar</b-button>
         <b-button class="my-2" type="submit" @click="editar = false"
@@ -161,6 +191,13 @@ export default {
           this.users[index].name = res.data.name;
           this.users[index].email = res.data.email;
           // this.users[index].password=res.data.password;
+          this.users[index].tipoId = res.data.tipoId;
+          this.users[index].numberIden = res.data.numberIden;
+          this.users[index].address = res.data.address;
+          this.users[index].phone = res.data.phone;
+          this.users[index].gender = res.data.gender;
+        //   this.users[index].fechNaci = res.data.fechNaci;
+          this.users[index].rol = res.data.rol;
           this.mensaje.color = "success";
           this.mensaje.texto = "Usuario Editado";
           this.showAlert();

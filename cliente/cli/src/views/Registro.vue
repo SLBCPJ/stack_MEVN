@@ -38,17 +38,71 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-floating">
-                          
-                            <select class="form-select" name="" id="" v-model="user.tipoId">
-                              <option >Tipo de Identificacion</option>
-                              <option  value="">CC</option>
-                              <option value="">TI</option>
-                              <option value="">CE</option>
-                            </select>
-                           
+                            <input
+                              required
+                              class="form-control"
+                              v-model="user.tipoId"
+                              type="text"
+                              placeholder="Tipo de Documentación"
+                            />
+                            <label for="inputFirstName">Tipo ID</label>
                           </div>
                         </div>
                       </div>
+
+                       <div class="row mb-3">
+                        <div class="col-md-6">
+                          <div class="form-floating mb-3 mb-md-0">
+                            <input
+                              required
+                              class="form-control"
+                              v-model="user.numberIden"
+                              type="number"
+                              placeholder="Número de identificación"
+                            />
+                            <label for="inputFirstName">Número ID</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-floating">
+                            <input
+                              required
+                              class="form-control"
+                              v-model="user.address"
+                              type="text"
+                              placeholder="Dirección"
+                            />
+                            <label for="inputFirstName">Dirección</label>
+                          </div>
+                        </div>
+                      </div>
+                       <div class="row mb-3">
+                        <div class="col-md-6">
+                          <div class="form-floating mb-3 mb-md-0">
+                            <input
+                              required
+                              class="form-control"
+                              v-model="user.phone"
+                              type="number"
+                              placeholder="Telefono"
+                            />
+                            <label for="inputFirstName">Telefono</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-floating">
+                            <input
+                              required
+                              class="form-control"
+                              v-model="user.gender"
+                              type="text"
+                              placeholder="Genero"
+                            />
+                            <label for="inputFirstName">Genero</label>
+                          </div>
+                        </div>
+                      </div>
+                      
                       <div class="form-floating mb-3">
                         <input
                           class="form-control"
@@ -60,8 +114,19 @@
                         />
                         <label for="inputEmail">Email</label>
                       </div>
+                         <div class="form-floating mb-3">
+                        <input
+                          class="form-control"
+                          id="inputEmail"
+                          type="date"
+                          placeholder="Fecha De Nacimiento"
+                          v-model="user.fechNaci"
+                          required
+                        />
+                        <label for="inputEmail">Fecha de Nacimiento</label>
+                      </div>
                       <div class="row mb-3">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
                             <input
                               class="form-control"
@@ -72,12 +137,17 @@
                             <label for="inputPassword">Contraseña</label>
                           </div>
                         </div>
-                        <!-- <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
-                                                        <label for="inputPasswordConfirm">Confirm Password</label>
-                                                    </div>
-                                                </div> -->
+                        <div class="col-md-6">
+                         <div class="form-floating mb-3 mb-md-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="Rol"
+                              v-model="user.rol"
+                            />
+                            <label for="inputPassword">Rol</label>
+                        </div>
+                        </div>
                       </div>
                       <div class="mt-4 mb-0">
                         <div class="d-grid">
@@ -85,7 +155,8 @@
                             class="btn btn-primary"
                             tabindex="5"
                             type="submit"
-                          ><i class="fas fa-user"></i>
+                          >
+                            <i class="fas fa-user"></i>
 
                             Registrar
                           </button>
@@ -104,20 +175,7 @@
           </div>
         </main>
       </div>
-      <!-- <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div> -->
+
     </div>
   </div>
 </template>
@@ -133,7 +191,14 @@ export default {
       user: {
         name: "",
         email: "",
-        password: ""
+        password: "",
+        tipoId: "",
+        numberIden: 0,
+        address: "",
+        phone: 0,
+        gender: "",
+        fechNaci: "",
+        rol: ""
       },
       editar: false,
       userEditar: {},
@@ -155,6 +220,13 @@ export default {
           this.user.name = "";
           this.user.email = "";
           this.user.password = "";
+          this.user.tipoId = "";
+          this.user.numberIden = "";
+          this.user.address = "";
+          this.user.phone = "";
+          this.user.gender = "";
+          this.user.fechNaci = "";
+          this.user.rol = "";
 
           this.mensaje.color = "success";
           this.mensaje.texto = "Usuario Agregado";
