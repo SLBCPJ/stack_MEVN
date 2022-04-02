@@ -39,7 +39,7 @@
           ><i class="far fa-window-close"></i
         ></b-button>
       </form>
-      <form @submit.prevent="agregarDieta()" v-if="!editar">
+      <form @submit.prevent="agregarDieta()" enctype="multipart/form-data" v-if="!editar">
         <h3>Agregar una nueva Dieta</h3>
 
         <input
@@ -53,6 +53,14 @@
           class="form-control my-2"
           placeholder="Descripcion"
           v-model="dieta.descripcionDieta"
+        />
+        <input
+          type="file"
+          class="form-control my-2"
+          placeholder="Imagen"
+          id="img"
+          @change="onFileChange"
+          accept=".png, .jpg, jpeg"
         />
         <b-button class="btn-success my-2" type="submit">Crear</b-button>
       </form>
@@ -84,6 +92,13 @@
                 @click="activarEdicion(item._id)"
                 ><i class="far fa-edit"></i
               ></b-button>
+                <b-button
+                class="btn-success mx-2"
+                v-b-popover.hover.bottom="'ver detalle'"
+                title="Ver Detalle"
+                @click="verDetalle(item._id)"
+                ><i class="far fa-edit"></i
+              ></b-button>
             </td>
           </tr>
         </tbody>
@@ -108,7 +123,7 @@ export default {
       dismissSecs: 5,
       dismissCountDown: 0,
 
-      dieta: { nombreDieta: "", descripcionDieta: "" },
+      dieta: { nombreDieta: "", descripcionDieta: "", image: '' },
       editar: false,
       dietaEditar: {},
     };
@@ -119,9 +134,21 @@ export default {
   },
 
   methods: {
+ 
     listarDietas() {
       this.axios
-        .get("/dieta")
+        .get("/dietas")
+        .then((res) => {
+          console.log(res.data);
+          this.dietas = res.data;
+        })
+        .catch((e) => {
+          console.log(e.response);
+        });
+    },
+    verDetalle(id){
+      this.axios
+        .get(`/dieta/${id}`)
         .then((res) => {
           console.log(res.data);
           this.dietas = res.data;
@@ -145,6 +172,12 @@ export default {
         .catch((e) => {
           console.log(e.response);
         });
+    },
+    onFileChange(e){
+      let files = e.target.files || e.dataTransfer.files
+      if (!files.length) return;
+      this.image=file[0]
+      console.log(this.image);
     },
 
     eliminarDieta(id) {

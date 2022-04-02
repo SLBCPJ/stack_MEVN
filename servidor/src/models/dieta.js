@@ -1,12 +1,24 @@
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const DietasSchema = new Schema({
-    nombreDieta: String,
-    descripcionDieta: String,
-})
+const DietasSchema = new Schema(
+  {
+    nombreDieta: { type: String, trim: true },
+    descripcionDieta: { type: String, trim: true },
+    img: String,
+  },
+  {
+    versionKey: false,
+    timestamps: true,
+  }
+);
+
+DietasSchema.methods.setImg = function (file) {
+  this.img = "/public/" + file;
+};
 
 // Convertir a modelo
-const Dieta = mongoose.model('Dieta', DietasSchema);
+const Dieta = mongoose.model("Dieta", DietasSchema);
 
-export default Dieta;
+module.exports = Dieta;

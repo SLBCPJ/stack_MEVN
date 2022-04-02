@@ -1,22 +1,29 @@
-import express from 'express';
+// import express from 'express';
+const express = require('express');
 const router = express.Router();
 
-import Nota from '../models/nota';
-import Auth from '../middleware/authentication'
+const Nota = require('../models/nota');
+// import Auth from '../middleware/authentication'
+const upload = require('../helpers/storage')
 
 
 // Agregar una nota
-router.post('/nueva-nota', async(req, res) => {
-    const body = req.body;  
-    try {
-      const notaDB = await Nota.create(body);
-      res.status(200).json(notaDB); 
-    } catch (error) {
-      return res.status(500).json({
-        mensaje: 'Ocurrio un error',
-        error
-      })
-    }
+router.post('/nueva-nota', upload.single('image') ,async(req, res) => {
+  const nota = new Nota(req.body)
+  const {filename}=req.file
+  nota.setImg(filename)
+  await nota.save()
+  res.send(nota)
+    // const body = req.body;  
+    // try {
+    //   const notaDB = await Nota.create(body);
+    //   res.status(200).json(notaDB); 
+    // } catch (error) {
+    //   return res.status(500).json({
+    //     mensaje: 'Ocurrio un error',
+    //     error
+    //   })
+    // }
   });
 
   // Get con parámetros

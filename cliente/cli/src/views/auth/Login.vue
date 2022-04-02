@@ -61,9 +61,9 @@ export default {
       let formData = new URLSearchParams();
       formData.append("email", this.form.email);
       formData.append("password", this.form.password);
-      axios
-        .post("https://yimy-mintic-88.herokuapp.com/login", formData, {
-          // axios.post('http://localhost:3000/login',formData,{
+      // axios
+      //   .post("https://yimy-mintic-88.herokuapp.com/login", formData, {
+          axios.post('http://localhost:3000/api/login',formData,{
           headers: {
             "Access-Control-Allow_Methods": "POST",
             // "x-auth-token":

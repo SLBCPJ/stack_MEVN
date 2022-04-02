@@ -1,7 +1,9 @@
 cliente -> cli
-npm i --y -->instalar la carpeta node_modules
+npm i -->instalar la carpeta node_modules
 npm run serve
 
 servidor
-npm i --y -->instalar la carpeta node_modules
+npm i -->instalar la carpeta node_modules
+
+npm run dev  ---> corredor el servidor
 npm run devbabel

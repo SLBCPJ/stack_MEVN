@@ -137,7 +137,7 @@
                             <label for="inputPassword">Contraseña</label>
                           </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                          <div class="form-floating mb-3 mb-md-0">
                             <input
                               class="form-control"
@@ -147,7 +147,7 @@
                             />
                             <label for="inputPassword">Rol</label>
                         </div>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="mt-4 mb-0">
                         <div class="d-grid">
@@ -198,7 +198,7 @@ export default {
         phone: 0,
         gender: "",
         fechNaci: "",
-        rol: ""
+        // rol: ""
       },
       editar: false,
       userEditar: {},
@@ -226,7 +226,7 @@ export default {
           this.user.phone = "";
           this.user.gender = "";
           this.user.fechNaci = "";
-          this.user.rol = "";
+          // this.user.rol = "";
 
           this.mensaje.color = "success";
           this.mensaje.texto = "Usuario Agregado";

@@ -1,90 +1,27 @@
-import express from 'express';
+const express = require("express");
 const router = express.Router();
-
-import Rutina from '../models/rutina';
-import Auth from '../middleware/authentication'
-
-
-// Agregar una nota
-router.post('/new-rutina', async(req, res) => {
-    const body = req.body;  
-    try {
-      const rutinaDB = await Rutina.create(body);
-      res.status(200).json(rutinaDB); 
-    } catch (error) {
-      return res.status(500).json({
-        mensaje: 'Ocurrio un error',
-        error
-      })
-    }
-  });
-
-  // Get con parámetros
-router.get('/rutina/:id', async(req, res) => {
-    const _id = req.params.id;
-    try {
-      const rutinaDB = await Rutina.findOne({_id});
-      res.json(rutinaDB);
-    } catch (error) {
-      return res.status(400).json({
-        mensaje: 'Ocurrio un error',
-        error
-      })
-    }
-  });
+const rutinaController = require("../controllers/rutina.controller");
+// const Rutina = require('../models/rutina');
+// const Auth = require('../middleware/authentication');
+const upload = require('../helpers/storage');
   
-  // Get con todos los documentos
-  router.get('/rutina', async(req, res) => {
-    try {
-      const rutinaDb = await Rutina.find();
-      res.json(rutinaDb);
-    } catch (error) {
-      return res.status(400).json({
-        mensaje: 'Ocurrio un error',
-        error
-      })
-    }
-  });
+// Agregar una nota
+router.post("/new-rutina", upload.single('image'),rutinaController.add);
+
+// Get con parámetros
+router.get("/rutina/:id", rutinaController.getId);
+
+// Get con todos los documentos
+router.get("/rutinas", rutinaController.getAll);
 
 // Delete eliminar una nota
-router.delete('/rutina/:id',Auth, async(req, res) => {
-    const _id = req.params.id;
-    try {
-      const rutinaDb = await Rutina.findByIdAndDelete({_id});
-      if(!rutinaDb){
-        return res.status(400).json({
-          mensaje: 'No se encontró el id indicado',
-          error
-        })
-      }
-      res.json(rutinaDb);  
-    } catch (error) {
-      return res.status(400).json({
-        mensaje: 'Ocurrio un error',
-        error
-      })
-    }
-  });
+router.delete("/rutina/:id", rutinaController.remove);
 
 // Put actualizar una rutina
-router.put('/rutina/:id',Auth, async(req, res) => {
-    const _id = req.params.id;
-    const body = req.body;
-    try {
-      const rutinaDb = await Rutina.findByIdAndUpdate(
-        _id,
-        body,
-        {new: true});
-      res.json(rutinaDb);  
-    } catch (error) {
-      return res.status(400).json({
-        mensaje: 'Ocurrio un error',
-        error
-      })
-    }
-  });  
+router.put("/rutina/:id", rutinaController.edit);
 
+//put para actualizar imagen
+router.put("/rutina/image/:id/", upload.single("image"), rutinaController.editImage);
 
-  
-  // Exportamos la configuración de express app
-  module.exports = router;
+// Exportamos la configuración de express app
+module.exports = router;
